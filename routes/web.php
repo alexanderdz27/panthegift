@@ -25,8 +25,3 @@ Route::get('/about', function(){
 Route::get('/product', function(){
     return view('product');
 });
-
-
-
-});
-
