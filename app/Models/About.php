@@ -29,10 +29,4 @@ class About
     {
         return collect(self::$About_team);
     }
-
-    public static function find($slug)
-    {
-        $products_bucket=  static::all();
-        return $products_bucket-> firstWhere('slug', $slug);
-    }
 }
