@@ -1,8 +1,12 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Models\About;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ProductController;
+use App\Models\Category;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +18,6 @@ use App\Http\Controllers\AboutController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('home');
 
@@ -24,8 +27,22 @@ Route::get('/about', function(){
     return view('about');
 });
 
-Route::get('/product', function(){
-    return view('product');
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product:slug}', [ProductController::class, 'show']);
+
+Route::get('/categories', function(){
+    return view('categories', [
+        'title' => 'All Product Categories',
+        'categories' => Category::all(),
+    ]);
 });
+// Route::get('/categories/{category:slug}', function(Category $category){
+//     return view('products', [
+//         'title' => "Product Category: $category->name",
+//         'products' => $category->products->load('category','rating'),
+//         'category' => $category->name,
+//     ]);
+// });
+
 
 Route::get('/about', [AboutController::class, 'index']);
