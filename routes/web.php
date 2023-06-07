@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\About;
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,5 @@ Route::get('/about', function(){
 Route::get('/product', function(){
     return view('product');
 });
+
+Route::get('/about', [AboutController::class, 'index']);
