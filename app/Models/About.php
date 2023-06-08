@@ -8,20 +8,23 @@ class About
         [
             "image" => "image/foto_atam.jpeg",
             "name" => "Muhammad Khatam Ramadhan",
-            "ig" =>"RP.100.000",
-            "fb" => ""
+            "instagram" =>"https://www.instagram.com/atam_mn/",
+            "whatsapp" => "https://wa.me/6283192679651",
+            "github" => "https://github.com/atamMN"
         ],
         [
-            "image" => "image/kartun.png",
+            "image" => "image/kartun1.png",
             "name" => "Muhammad Alexander Dzulkarnain",
-            "ig" =>"RP.100.000",
-            "fb" => ""
+            "instagram" =>"https://www.instagram.com/Alexanderdz__/",
+            "whatsapp" => "https://wa.me/6287826542412",
+            "github" => "https://github.com/alexanderdz27"
         ],
         [
             "image" => "image/foto_bagas.jpeg",
             "name" => "Bagas Arjun Valentino",
-            "ig" =>"RP.100.000",
-            "fb" => ""
+            "instagram" =>"https://www.instagram.com/Barval363/",
+            "whatsapp" => "https://wa.me/6283119642489",
+            "github" => "https://github.com/BRVL363"
         ]
     ];
 
