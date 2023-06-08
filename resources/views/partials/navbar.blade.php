@@ -41,6 +41,9 @@
           </div>
           <button class="btn" style="margin-left:5px; font-weight:600; color:rgb(191, 73, 38); background: rgb(255, 201, 163); border: 1px solid rgb(255, 201, 163)" type="submit">Search</button>
         </form>
+        <div>
+          <a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgb(191,73,38)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'" href="/login">LOGIN</a>
+        </div>
       </div>
     </div>
   </nav>

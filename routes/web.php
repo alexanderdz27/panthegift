@@ -1,11 +1,13 @@
 <?php
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\About;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
-use App\Models\Category;
+use App\Http\Controllers\RegisterController;
 
 
 /*
@@ -36,6 +38,11 @@ Route::get('/categories', function(){
         'categories' => Category::all(),
     ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 // Route::get('/categories/{category:slug}', function(Category $category){
 //     return view('products', [
 //         'title' => "Product Category: $category->name",
