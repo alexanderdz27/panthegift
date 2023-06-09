@@ -13,7 +13,7 @@ class About
             "github" => "https://github.com/atamMN"
         ],
         [
-            "image" => "image/kartun1.png",
+            "image" => "image/foto_alex.jpeg",
             "name" => "Muhammad Alexander Dzulkarnain",
             "instagram" =>"https://www.instagram.com/Alexanderdz__/",
             "whatsapp" => "https://wa.me/6287826542412",
