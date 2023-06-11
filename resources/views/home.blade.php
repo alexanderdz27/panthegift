@@ -1,3 +1,17 @@
+<style>
+    .reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
+}
+</style>
+
 @extends('layouts.main')
 
 
@@ -42,7 +56,7 @@
   </div>
 
 
-    <div class="row">
+    <div class="row pt-5 reveal">
       <div class="col-sm" style="font-size: 30px">
         <h1>PANTHEGIFT</h1>
         <span style="">
@@ -50,29 +64,50 @@
         </span>
       </div>
       <div class="col-sm ta-center" >
-            <img src="image/panthegift.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
+            <img src="image/home1.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
       </div>
     </div>
-    <div class="row">
+    <div class="row pt-5 reveal">
         <div class="col-sm ta-center" >
-              <img src="image/panthegift.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
+              <img src="image/home2.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
         </div>
         <div class="col-sm" style="font-size: 30px">
           In addition to trophy buckets, PANTHEGIFT also offers a wide selection of balloon buckets. These creative and unique buckets are perfect for adding a touch of joy and festivity to any event or party. Whether you are celebrating a birthday, anniversary, or special occasion, our balloon buckets will enhance the atmosphere and create memorable experiences.
         </div>
     </div>
 
-    <div class="row">
+    <div class="row pt-5 reveal">
         <div class="col-sm" style="font-size: 30px">
-          <h1>PANTHEGIFT</h1>
-           is a brand specializing in the sale of trophy buckets and balloon buckets. We are dedicated to providing high-quality products that cater to various occasions and celebrations. Our range of trophy buckets offers an elegant and stylish option for commemorating achievements and honoring accomplishments. Crafted with precision and attention to detail, these trophy buckets are designed to make a lasting impression.
+          At PANTHEGIFT, we prioritize customer satisfaction and strive to exceed expectations. Our commitment to quality extends beyond our products to include exceptional customer service. We aim to provide a seamless shopping experience, ensuring that every customer finds the perfect bucket that meets their needs.
         </div>
         <div class="col-sm ta-center" >
-              <img src="image/panthegift.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
+              <img src="image/home3.jpeg" alt="" height="100%" width="100%" style=" opacity: 0.5;">
         </div>
     </div>
+    <div class="text-center pt-5 pb-10 reveal" style="font-size: 30px">
+        Choose PANTHEGIFT for your trophy bucket and balloon bucket needs and discover the perfect blend of style, quality, and celebration. Let us help you create unforgettable moments with our exquisite range of products.
+    </div>
 
+<script>
+    function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
 
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+        } else {
+        reveals[i].classList.remove("active");
+        }
+    }
+    }
+
+    window.addEventListener("scroll", reveal);
+
+</script>
 
 @endsection
 
