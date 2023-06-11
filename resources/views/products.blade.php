@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('container')
-    <h2 class="mb-5">{{ $title }}</h2>
+    <h2 class="mb-5">{{ $title }} <spam><a href="#" data-toggle="modal" data-target="#exampleModal"><i data-feather="shopping-cart"></i></a></spam></h2>
     @if($products->count())
-        @if($products->count() > 3)        
+        @if($products->count() > 2)        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -42,27 +42,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        @elseif ($products->count())
-            <div class="mt-5">
-                <div class="row">
-                    @foreach ($products as $product)     
-                        <div class="col-md-3">
-                            <div class="card mb-3">
-                                <img src="https://source.unsplash.com/500x500?{{ $product->category->name }}" class="card-img-top" alt="{{ $product->category->name }}">
-                                <div class="card-body">
-                                    <h4 class="card-title"><a href="/products/{{ $product->slug }}" class="text-decoration-none text-dark text-bold">{{ $product->title }}</a></h4>
-                                    <p><a href="/products?category={{ $product->category->slug }}">{{ $product->category->name }}</a></p>
-                                    <p class="card-text">ratings: {{ $product->rating->score }}/5</p>
-                                    <p>{{ $product->price }}</p>
-                                    <a href="#" class="btn btn-primary">Add To Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-        
+
         <div class="mt-5">
             <div class="row">
                 @foreach ($products->skip(3) as $product)     
@@ -73,15 +53,43 @@
                                 <h4 class="card-title"><a href="/products/{{ $product->slug }}" class="text-decoration-none text-dark text-bold">{{ $product->title }}</a></h4>
                                 <p><a href="/products?category={{ $product->category->slug }}">{{ $product->category->name }}</a></p>
                                 <p class="card-text">ratings: {{ $product->rating->score }}/5</p>
-                                <p>{{ $product->price }}</p>
-                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                <p>Rp {{ $product->price }}</p>
+                                {{-- <form action="{{ url('products/addcart'), $product->id }}" method="post">
+                                    @csrf
+                                    <button type="submit" href="#" class="btn btn-outline-primary" id="addCart">Add To Cart</button>
+                                </form> --}}
+                                <a href="#" data-toggle="modal" data-target="#{{ $product->slug }}" class="btn btn-primary">Buy Now!</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-    
+        @endif
+        @if ($products->count() < 3)
+            <div class="mt-5">
+                <div class="row">
+                    @foreach ($products as $product)     
+                        <div class="col-md-3">
+                            <div class="card mb-3">
+                                <img src="https://source.unsplash.com/500x500?{{ $product->category->name }}" class="card-img-top" alt="{{ $product->category->name }}">
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="/products/{{ $product->slug }}" class="text-decoration-none text-dark text-bold">{{ $product->title }}</a></h4>
+                                    <p><a href="/products?category={{ $product->category->slug }}">{{ $product->category->name }}</a></p>
+                                    <p class="card-text">ratings: {{ $product->rating->score }}/5</p>
+                                    <p>Rp {{ $product->price }}</p>
+                                    {{-- <form action="{{ url('products/addcart'), $product->id }}" method="post">
+                                        @csrf
+                                        <button type="submit" href="#" class="btn btn-outline-primary" id="addCart">Add To Cart</button>
+                                    </form> --}}
+                                    <a href="#" data-toggle="modal" data-target="#{{ $product->slug }}" class="btn btn-primary">Buy Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif    
     @else
         <h1 class="text-center">No Product Available.</h1>
     @endif
@@ -90,3 +98,45 @@
         {{ $products->links() }}
     </div>
 @endsection
+
+@foreach ($products as $product)    
+    <div class="modal fade" id="{{ $product->slug }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Order?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{{ $product->title }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>1</td>
+                  </tr>
+                </tbody>
+            </table>
+            <h6>Total Price: Rp {{ $product->price }} </h6>
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="
+                https://api.whatsapp.com/send?phone=62818811075&text=*Konfirmasi%20Order%3A*%0A*Produk%3A%20*%20{{ $product->title }}%0A*Jumlah%3A%20*%202%0A*Total%20Harga%3A%20_Rp%20{{ $product->price }}_*%0A
+                " type="button" class="btn btn-primary">Order</a>
+            </div>
+        </div>
+    </div>
+    </div>
+@endforeach

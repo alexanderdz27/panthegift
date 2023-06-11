@@ -41,8 +41,8 @@
         </div>
     
         <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Register</button>
-        <div class="mt-2 d-flex justify-content-center"><small>Already have an account? <a href="/register">Login</a></small></div>
-        <p class="mt-5 text-body-secondary">&copy; PANTHEGIFT 2023</p>
+        <div class="mt-2 d-flex justify-content-center"><small>Already have an account? <a href="/login">Login</a></small></div>
+        <p class="mt-3 text-body-secondary">&copy; PANTHEGIFT 2023</p>
       </form>
     </div>
   </div>

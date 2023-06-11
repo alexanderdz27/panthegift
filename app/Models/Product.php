@@ -6,10 +6,11 @@ use App\Models\Rating;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $guarded = ['id'];
     protected $with = ['category', 'rating'];
@@ -18,8 +19,7 @@ class Product extends Model
     {
 
         $query->when($filters['search'] ?? false, function($query, $search){
-            return $query->where('title', 'like', '%' . $search . '%')
-            ->orWhere('desc', 'like', '%' . $search . '%');
+            return $query->where('title', 'like', '%' . $search . '%');
         });
 
         $query->when($filters['category'] ?? false, function($query, $category){
@@ -35,5 +35,18 @@ class Product extends Model
 
     public function rating(){
         return $this->belongsTo(Rating::class);
+    }
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

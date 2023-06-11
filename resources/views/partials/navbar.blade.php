@@ -26,23 +26,45 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search" action="/products">
-            {{-- <input for="inputGroupSelect01" class="form-control me-2 text-light" name="search" type="text" value="{{ request('search') }}" style="background: transparent; border: 1px solid rgb(255, 201, 163);"> --}}
-          <div class="input-group">
-            <input type="text" name="search" value="{{ request('search') }}" class="form-control" aria-label="Text input with segmented dropdown button">
-            <div class="input-group-append">
-              <select name="category" class="custom-select input-group-append">
-                <option value="" {{ request('category') === '' ? 'selected' : null}}>All Categories</option>
-                <option value="baloon" {{ request('category') === 'baloon' ? 'selected' : null}}>Baloon</option>
-                <option value="bucket" {{ request('category') === 'bucket' ? 'selected' : null}}>Bucket</option>
-                <option value="trophy" {{ request('category') === 'trophy' ? 'selected' : null}}>Trophy</option>
-              </select>
+        <div class="d-flex">
+          <form class="d-flex" role="search" action="/products">
+            <div class="input-group">
+              <input type="text" name="search" value="{{ request('search') }}" class="form-control" aria-label="Text input with segmented dropdown button">
+              <div class="input-group-append">
+                <select name="category" class="custom-select input-group-append" style="height: 100%">
+                  <option value="" {{ request('category') === '' ? 'selected' : null}}>All Categories</option>
+                  <option value="baloon" {{ request('category') === 'baloon' ? 'selected' : null}}>Baloon</option>
+                  <option value="bucket" {{ request('category') === 'bucket' ? 'selected' : null}}>Bucket</option>
+                  <option value="trophy" {{ request('category') === 'trophy' ? 'selected' : null}}>Trophy</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <button class="btn" style="margin-left:5px; font-weight:600; color:rgb(191, 73, 38); background: rgb(255, 201, 163); border: 1px solid rgb(255, 201, 163)" type="submit">Search</button>
-        </form>
-        <div>
-          <a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgb(191,73,38)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'" href="/login">LOGIN</a>
+            <button class="btn" style="margin-left:5px; font-weight:600; color:rgb(191, 73, 38); background: rgb(255, 201, 163); border: 1px solid rgb(255, 201, 163)" type="submit">Search</button>
+          </form>          
+          @auth
+            <div class="d-flex justify-content-between">
+              <div class="dropdown dropdown-menu-end">
+                <a class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img height="32" width="32" src="https://img.icons8.com/dusk/64/test-account.png" alt="test-account"/>
+                </a>
+          
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink" style="background-color: rgb(191, 73, 38)">
+                  <li><a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'"href="/dashboard">Dashboard</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form action="/logout" method="post">
+                      @csrf
+                      <button type="submit" class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'">Logout</button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          @else
+            <div>
+              <a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgb(191,73,38)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'" href="/login">LOGIN</a>
+            </div>
+          @endauth
         </div>
       </div>
     </div>

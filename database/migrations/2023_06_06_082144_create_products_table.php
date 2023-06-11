@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('category_id');
-            $table->foreignId('rating_id');
+            $table->foreignId('rating_id')->default(1);
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('desc');

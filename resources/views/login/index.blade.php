@@ -21,23 +21,31 @@
         {{ session('success') }}
       </div>
       @endif
-      <form>
+      @if(session()->has('invalid'))        
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        {{ session('invalid') }}
+      </div>
+      @endif
+      <form action="/login" method="post">
+        @csrf
         <div class="d-flex justify-content-center">
           <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         </div>
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
     
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+          <input autofocus required value="{{ old('email') }}" type="email" name="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="email">Email address</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input required type="password" name="password" class="form-control" id="password" placeholder="Password">
+          <label for="password">Password</label>
         </div>
     
         <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Login</button>
         <div class="mt-2 d-flex justify-content-center"><small>Not registered? <a href="/register">Register Now!</a></small></div>
+        <div class="mt-2 d-flex justify-content-center"><small><a href="/">Keep exploring as a <b>Guest</b>.</a></small></div>
         <p class="mt-5 text-body-secondary">&copy; PANTHEGIFT 2023</p>
       </form>
     </div>
