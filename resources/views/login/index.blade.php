@@ -14,8 +14,8 @@
 
 <body class="container">
   <div class="row justify-content-center py-5">
-    <div class="col-md-4">  
-      @if(session()->has('success'))        
+    <div class="col-md-4">
+      @if(session()->has('success'))
       <div class="alert alert-success alert-dismissible" role="alert">
         <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
         {{ session('success') }}
@@ -30,10 +30,10 @@
       <form action="/login" method="post">
         @csrf
         <div class="d-flex justify-content-center">
-          <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+          <img class="mb-4" src="image/panthegift.jpeg" alt="" width="100px" height="100px" style="border-radius:50%">
         </div>
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    
+
         <div class="form-floating">
           <input autofocus required value="{{ old('email') }}" type="email" name="email" class="form-control" id="email" placeholder="name@example.com">
           <label for="email">Email address</label>
@@ -42,7 +42,7 @@
           <input required type="password" name="password" class="form-control" id="password" placeholder="Password">
           <label for="password">Password</label>
         </div>
-    
+
         <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Login</button>
         <div class="mt-2 d-flex justify-content-center"><small>Not registered? <a href="/register">Register Now!</a></small></div>
         <div class="mt-2 d-flex justify-content-center"><small><a href="/">Keep exploring as a <b>Guest</b>.</a></small></div>
