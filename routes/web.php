@@ -3,6 +3,8 @@
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Models\About;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
@@ -50,6 +52,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 // });
 
 
-
-
-
+Route::get('/about', [AboutController::class, 'index']);

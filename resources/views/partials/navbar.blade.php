@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg px-5" style="background-color: rgb(191, 73, 38); ">
+<nav class="navbar navbar-expand-lg px-5" style="z-index:99;background-color: rgb(191, 73, 38);position: sticky;width: 100%; transition: top 0.3s;" id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" style="color:rgb(255, 201, 163); font-weight:bold" href="/">PANTHEGIFT</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
             <a class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Product
             </a>
-            <ul class="dropdown-menu" style="background-color: rgb(191, 73, 38)">
+            <ul class="dropdown-menu" style="background-color: rgb(0, 0, 0); color:black;">
               <li><a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'" href="/products">All Products</a></li>
               <li><a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'"href="/products?category=bucket">Bucket</a></li>
               <li><a class="dropdown-item text-light" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseout="this.style.backgroundColor='rgb(191,73,38)'"href="/products?category=baloon">Baloon</a></li>
@@ -47,3 +47,13 @@
       </div>
     </div>
   </nav>
+
+  <script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+        document.getElementById("navbar").style.top = "0";
+    }
+    }
+  </script>

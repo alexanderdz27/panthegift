@@ -14,8 +14,8 @@
 
 <body class="container">
   <div class="row justify-content-center py-5">
-    <div class="col-md-4">  
-      @if(session()->has('success'))        
+    <div class="col-md-4">
+      @if(session()->has('success'))
       <div class="alert alert-success alert-dismissible" role="alert">
         <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
         {{ session('success') }}
@@ -23,10 +23,10 @@
       @endif
       <form>
         <div class="d-flex justify-content-center">
-          <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+          <img class="mb-4" src="image/panthegift.jpeg" alt="" width="100px" height="100px" style="border-radius:50%">
         </div>
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    
+
         <div class="form-floating">
           <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
@@ -35,7 +35,7 @@
           <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
-    
+
         <button class="btn btn-primary w-100 py-2 mt-4" type="submit">Login</button>
         <div class="mt-2 d-flex justify-content-center"><small>Not registered? <a href="/register">Register Now!</a></small></div>
         <p class="mt-5 text-body-secondary">&copy; PANTHEGIFT 2023</p>
