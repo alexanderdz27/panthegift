@@ -10,7 +10,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardProductController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -92,12 +92,15 @@ class DashboardProductController extends Controller
         //
     }
 
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         // @dd(request('slug'));
-        Product::destroy($product);
-        return redirect('/dashboard')->with('success', 'Product has been deleted.');
+        $product = Product::find($id);
+        $product->delete($product);
+        session()->flash('success', ' Deleted Successfully!!!');
+        return redirect('/dashboard');
     }
+
 
     public function checkSlug(Request $request)
     {
