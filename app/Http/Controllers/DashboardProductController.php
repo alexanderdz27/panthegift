@@ -75,9 +75,14 @@ class DashboardProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        // @dd($product->price);    
+        return view('dashboard.edit', [
+            'categories' => Category::all(),
+            'product' => $product
+        ]);
     }
 
     /**
@@ -87,9 +92,29 @@ class DashboardProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $rules = $request->validate([
+            'title'=>'required|max:255',
+            'category_id' => 'required',
+            'desc'=> 'required',
+            'price'=> 'required'
+        ]);
+
+        // if($request->slug != $product->slug){
+        //     $rules['slug'] = "required|unique:products";
+        // }
+        
+        // $validated = $request->validate($rules);
+
+        // $rules['user_id'] = auth()->user()->id;
+        $rules['excerpt'] = Str::limit(strip_tags($request->desc), 100);
+
+        Product::where('id', $product->id)->update($rules);
+
+        return redirect('/dashboard')->with('success', 'product successfully edited!');
     }
 
     public function destroy($id)
